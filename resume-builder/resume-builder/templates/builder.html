@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+
+{% block title %}Resume Builder - Professional Resume Builder{% endblock %}
+
+{% block main_class %}resume-builder{% endblock %}
+
+{% block extra_css %}
+<!-- jsPDF and HTML2Canvas for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Form Sidebar -->
+        <div class="col-lg-4 col-md-5">
+            <div class="builder-sidebar">
+                <div class="form-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">
+                            <i class="fas fa-edit me-2"></i>Resume Builder
+                        </h4>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-save me-1"></i>Save
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" id="saveResume">Save Resume</a></li>
+                                <li><a class="dropdown-item" href="#" id="loadResume">Load Resume</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" id="exportPDF">Export PDF</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Template Selection -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-palette me-2"></i>Template</h6>
+                        </div>
+                        <div class="card-body">
+                            <select class="form-select" id="templateSelect">
+                                <option value="modern">Modern</option>
+                                <option value="classic">Classic</option>
+                                <option value="creative">Creative</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-user me-2"></i>Personal Information</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="John Doe">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Professional Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Software Engineer">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="john.doe@email.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+1 (555) 123-4567">
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea class="form-control" id="address" rows="2" placeholder="City, State, Country"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="linkedin" class="form-label">LinkedIn</label>
+                                <input type="url" class="form-control" id="linkedin" placeholder="https://linkedin.com/in/johndoe">
+                            </div>
+                            <div class="mb-3">
+                                <label for="website" class="form-label">Website</label>
+                                <input type="url" class="form-control" id="website" placeholder="https://johndoe.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-file-text me-2"></i>Professional Summary</h6>
+                        </div>
+                        <div class="card-body">
+                            <textarea class="form-control" id="summary" rows="4" placeholder="Write a compelling summary of your professional background, key skills, and career objectives..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="fas fa-briefcase me-2"></i>Work Experience</h6>
+                            <button class="btn btn-sm btn-primary" id="addExperience">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="experienceContainer">
+                                <!-- Experience items will be added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="fas fa-graduation-cap me-2"></i>Education</h6>
+                            <button class="btn btn-sm btn-primary" id="addEducation">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="educationContainer">
+                                <!-- Education items will be added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-tools me-2"></i>Skills</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="technicalSkills" class="form-label">Technical Skills</label>
+                                <textarea class="form-control" id="technicalSkills" rows="3" placeholder="JavaScript, Python, React, Node.js, SQL..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="softSkills" class="form-label">Soft Skills</label>
+                                <textarea class="form-control" id="softSkills" rows="3" placeholder="Leadership, Communication, Problem Solving, Teamwork..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="fas fa-project-diagram me-2"></i>Projects</h6>
+                            <button class="btn btn-sm btn-primary" id="addProject">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="projectContainer">
+                                <!-- Project items will be added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="fas fa-certificate me-2"></i>Certifications</h6>
+                            <button class="btn btn-sm btn-primary" id="addCertification">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="certificationContainer">
+                                <!-- Certification items will be added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-language me-2"></i>Languages</h6>
+                        </div>
+                        <div class="card-body">
+                            <textarea class="form-control" id="languages" rows="2" placeholder="English (Native), Spanish (Fluent), French (Intermediate)..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>Additional Information</h6>
+                        </div>
+                        <div class="card-body">
+                            <textarea class="form-control" id="additionalInfo" rows="3" placeholder="Volunteer work, awards, publications, or any other relevant information..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="col-lg-8 col-md-7">
+            <div class="builder-preview">
+                <div class="preview-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">
+                            <i class="fas fa-eye me-2"></i>Live Preview
+                        </h4>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-primary btn-sm" id="zoomOut">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-sm" id="zoomIn">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary btn-sm" id="resetZoom">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="resume-preview" id="resumePreview">
+                        <!-- Resume content will be rendered here -->
+                        <div class="template-modern">
+                            <div class="header">
+                                <div class="name" id="previewName">Your Name</div>
+                                <div class="title" id="previewTitle">Professional Title</div>
+                                <div class="contact-info" id="previewContact">
+                                    <div>email@example.com | +1 (555) 123-4567</div>
+                                    <div>City, State, Country</div>
+                                </div>
+                            </div>
+                            
+                            <div class="section" id="previewSummary">
+                                <div class="section-title">Professional Summary</div>
+                                <p>Write a compelling summary of your professional background, key skills, and career objectives...</p>
+                            </div>
+                            
+                            <div class="section" id="previewExperience">
+                                <div class="section-title">Work Experience</div>
+                                <p>Add your work experience here...</p>
+                            </div>
+                            
+                            <div class="section" id="previewEducation">
+                                <div class="section-title">Education</div>
+                                <p>Add your education here...</p>
+                            </div>
+                            
+                            <div class="section" id="previewSkills">
+                                <div class="section-title">Skills</div>
+                                <p>Add your skills here...</p>
+                            </div>
+                            
+                            <div class="section" id="previewProjects">
+                                <div class="section-title">Projects</div>
+                                <p>Add your projects here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-success btn-lg me-3" id="downloadPDF">
+                            <i class="fas fa-download me-2"></i>Download PDF
+                        </button>
+                        <button class="btn btn-primary btn-lg" id="printResume">
+                            <i class="fas fa-print me-2"></i>Print Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Experience Item Template -->
+<template id="experienceTemplate">
+    <div class="experience-item border rounded p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="mb-1 experience-title">Job Title</h6>
+            <button class="btn btn-sm btn-outline-danger remove-experience">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div class="mb-2">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Job Title">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Company Name">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Location">
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" class="form-control form-control-sm" placeholder="Start Date (MM/YYYY)">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-control-sm" placeholder="End Date (MM/YYYY)">
+                </div>
+            </div>
+        </div>
+        <textarea class="form-control form-control-sm" rows="3" placeholder="Describe your responsibilities and achievements..."></textarea>
+    </div>
+</template>
+
+<!-- Education Item Template -->
+<template id="educationTemplate">
+    <div class="education-item border rounded p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="mb-1 education-degree">Degree</h6>
+            <button class="btn btn-sm btn-outline-danger remove-education">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div class="mb-2">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Degree">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Institution">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Field of Study">
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" class="form-control form-control-sm" placeholder="Start Date (MM/YYYY)">
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control form-control-sm" placeholder="End Date (MM/YYYY)">
+                </div>
+            </div>
+        </div>
+        <textarea class="form-control form-control-sm" rows="2" placeholder="Additional details, GPA, honors..."></textarea>
+    </div>
+</template>
+
+<!-- Project Item Template -->
+<template id="projectTemplate">
+    <div class="project-item border rounded p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="mb-1 project-name">Project Name</h6>
+            <button class="btn btn-sm btn-outline-danger remove-project">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div class="mb-2">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Project Name">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Technologies Used">
+            <input type="url" class="form-control form-control-sm mb-1" placeholder="Project URL (optional)">
+        </div>
+        <textarea class="form-control form-control-sm" rows="3" placeholder="Describe the project, your role, and key achievements..."></textarea>
+    </div>
+</template>
+
+<!-- Certification Item Template -->
+<template id="certificationTemplate">
+    <div class="certification-item border rounded p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="mb-1 certification-name">Certification Name</h6>
+            <button class="btn btn-sm btn-outline-danger remove-certification">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div class="mb-2">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Certification Name">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Issuing Organization">
+            <input type="text" class="form-control form-control-sm mb-1" placeholder="Date Earned (MM/YYYY)">
+            <input type="text" class="form-control form-control-sm" placeholder="Expiration Date (MM/YYYY) - Optional">
+        </div>
+        <textarea class="form-control form-control-sm" rows="2" placeholder="Description or credential ID..."></textarea>
+    </div>
+</template>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/builder.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pdf.js') }}"></script>
+{% endblock %} 

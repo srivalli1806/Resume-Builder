@@ -1,0 +1,44 @@
+<svg width="300" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="400" fill="white"/>
+  
+  <!-- Header with purple background -->
+  <rect x="0" y="0" width="300" height="80" fill="#6f42c1"/>
+  
+  <!-- Name -->
+  <text x="20" y="30" fill="white" font-family="Arial, sans-serif" font-size="22" font-weight="bold">John Smith</text>
+  
+  <!-- Title -->
+  <text x="20" y="50" fill="white" font-family="Arial, sans-serif" font-size="14" opacity="0.9">Software Engineer</text>
+  
+  <!-- Contact Info -->
+  <text x="20" y="95" fill="#777" font-family="Arial, sans-serif" font-size="10">john.smith@email.com</text>
+  <text x="20" y="108" fill="#777" font-family="Arial, sans-serif" font-size="10">(555) 123-4567</text>
+  <text x="20" y="121" fill="#777" font-family="Arial, sans-serif" font-size="10">San Francisco, CA</text>
+  
+  <!-- Section: Professional Summary -->
+  <rect x="20" y="140" width="4" height="15" fill="#6f42c1"/>
+  <text x="30" y="152" fill="#6f42c1" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Professional Summary</text>
+  <text x="20" y="170" fill="#555" font-family="Arial, sans-serif" font-size="9">Experienced software engineer with 5+</text>
+  <text x="20" y="182" fill="#555" font-family="Arial, sans-serif" font-size="9">years developing scalable web</text>
+  <text x="20" y="194" fill="#555" font-family="Arial, sans-serif" font-size="9">applications using modern technologies.</text>
+  
+  <!-- Section: Experience -->
+  <rect x="20" y="210" width="4" height="15" fill="#6f42c1"/>
+  <text x="30" y="222" fill="#6f42c1" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Experience</text>
+  <text x="20" y="237" fill="#555" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Senior Developer</text>
+  <text x="20" y="249" fill="#555" font-family="Arial, sans-serif" font-size="9">Tech Corp • 2020 - Present</text>
+  <text x="20" y="261" fill="#555" font-family="Arial, sans-serif" font-size="9">Led development of enterprise</text>
+  <text x="20" y="273" fill="#555" font-family="Arial, sans-serif" font-size="9">applications using React and Node.js.</text>
+  
+  <!-- Section: Education -->
+  <rect x="20" y="285" width="4" height="15" fill="#6f42c1"/>
+  <text x="30" y="297" fill="#6f42c1" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Education</text>
+  <text x="20" y="312" fill="#555" font-family="Arial, sans-serif" font-size="9" font-weight="bold">BS Computer Science</text>
+  <text x="20" y="324" fill="#555" font-family="Arial, sans-serif" font-size="9">University of Technology</text>
+  <text x="20" y="336" fill="#555" font-family="Arial, sans-serif" font-size="9">2015 - 2019</text>
+  
+  <!-- Template Label -->
+  <rect x="0" y="380" width="300" height="20" fill="#f8f9fa"/>
+  <text x="150" y="395" text-anchor="middle" fill="#6f42c1" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Professional Template</text>
+</svg> 

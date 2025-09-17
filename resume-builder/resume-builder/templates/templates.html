@@ -1,0 +1,422 @@
+{% extends "base.html" %}
+
+{% block title %}Resume Templates - Professional Resume Builder{% endblock %}
+
+{% block main_class %}templates-page{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4 fw-bold mb-4">Choose Your Perfect Template</h1>
+                <p class="lead mb-4">
+                    Select from our collection of professionally designed templates. 
+                    Each template is optimized for different industries and experience levels.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Templates Gallery -->
+<section class="templates-gallery py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Modern Template -->
+            <div class="col-lg-6 col-xl-3">
+                <div class="template-card card h-100 border-0 shadow-sm" data-template="modern">
+                    <div class="template-preview position-relative">
+                        <img src="{{ url_for('static', filename='images/templates/modern-template.svg') }}" 
+                             alt="Modern Template" class="card-img-top">
+                        <div class="template-overlay">
+                            <div class="template-actions">
+                                <button class="btn btn-primary btn-sm me-2 preview-template" data-template="modern">
+                                    <i class="fas fa-eye me-1"></i>Preview
+                                </button>
+                                <a href="{{ url_for('builder') }}?template=modern" class="btn btn-success btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Use Template
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Modern</h5>
+                        <p class="card-text text-muted">Clean, minimalist design with bold typography. Perfect for tech professionals and modern industries.</p>
+                        <div class="template-features">
+                            <span class="badge bg-primary me-1">Modern</span>
+                            <span class="badge bg-light text-dark">Minimalist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classic Template -->
+            <div class="col-lg-6 col-xl-3">
+                <div class="template-card card h-100 border-0 shadow-sm" data-template="classic">
+                    <div class="template-preview position-relative">
+                        <img src="{{ url_for('static', filename='images/templates/classic-template.svg') }}" 
+                             alt="Classic Template" class="card-img-top">
+                        <div class="template-overlay">
+                            <div class="template-actions">
+                                <button class="btn btn-primary btn-sm me-2 preview-template" data-template="classic">
+                                    <i class="fas fa-eye me-1"></i>Preview
+                                </button>
+                                <a href="{{ url_for('builder') }}?template=classic" class="btn btn-success btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Use Template
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Classic</h5>
+                        <p class="card-text text-muted">Traditional layout with professional styling. Ideal for corporate environments and conservative industries.</p>
+                        <div class="template-features">
+                            <span class="badge bg-success me-1">Professional</span>
+                            <span class="badge bg-light text-dark">Traditional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creative Template -->
+            <div class="col-lg-6 col-xl-3">
+                <div class="template-card card h-100 border-0 shadow-sm" data-template="creative">
+                    <div class="template-preview position-relative">
+                        <img src="{{ url_for('static', filename='images/templates/creative-template.svg') }}" 
+                             alt="Creative Template" class="card-img-top">
+                        <div class="template-overlay">
+                            <div class="template-actions">
+                                <button class="btn btn-primary btn-sm me-2 preview-template" data-template="creative">
+                                    <i class="fas fa-eye me-1"></i>Preview
+                                </button>
+                                <a href="{{ url_for('builder') }}?template=creative" class="btn btn-success btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Use Template
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Creative</h5>
+                        <p class="card-text text-muted">Colorful and innovative design. Great for designers, artists, and creative professionals.</p>
+                        <div class="template-features">
+                            <span class="badge bg-danger me-1">Creative</span>
+                            <span class="badge bg-light text-dark">Colorful</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Template -->
+            <div class="col-lg-6 col-xl-3">
+                <div class="template-card card h-100 border-0 shadow-sm" data-template="professional">
+                    <div class="template-preview position-relative">
+                        <img src="{{ url_for('static', filename='images/templates/professional-template.svg') }}" 
+                             alt="Professional Template" class="card-img-top">
+                        <div class="template-overlay">
+                            <div class="template-actions">
+                                <button class="btn btn-primary btn-sm me-2 preview-template" data-template="professional">
+                                    <i class="fas fa-eye me-1"></i>Preview
+                                </button>
+                                <a href="{{ url_for('builder') }}?template=professional" class="btn btn-success btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Use Template
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Professional</h5>
+                        <p class="card-text text-muted">Corporate-style layout with clean lines. Perfect for executives and business professionals.</p>
+                        <div class="template-features">
+                            <span class="badge bg-purple me-1">Executive</span>
+                            <span class="badge bg-light text-dark">Corporate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Template Comparison -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-chart-bar me-2"></i>Template Comparison
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Modern</th>
+                                        <th>Classic</th>
+                                        <th>Creative</th>
+                                        <th>Professional</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Best For</strong></td>
+                                        <td>Creative professionals</td>
+                                        <td>Corporate jobs</td>
+                                        <td>Designers & artists</td>
+                                        <td>Executives</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Style</strong></td>
+                                        <td>Minimalist</td>
+                                        <td>Traditional</td>
+                                        <td>Colorful</td>
+                                        <td>Corporate</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Typography</strong></td>
+                                        <td>Bold & clean</td>
+                                        <td>Serif fonts</td>
+                                        <td>Modern & playful</td>
+                                        <td>Professional</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Color Scheme</strong></td>
+                                        <td>Blue & white</td>
+                                        <td>Black & white</td>
+                                        <td>Multi-color</td>
+                                        <td>Dark & formal</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Template Tips -->
+        <div class="row mt-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-0 bg-light">
+                    <div class="card-body text-center">
+                        <h4 class="mb-3">
+                            <i class="fas fa-lightbulb text-warning me-2"></i>Choosing the Right Template
+                        </h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="text-start">
+                                    <h6 class="fw-bold">Consider Your Industry</h6>
+                                    <p class="text-muted small">Creative fields often prefer modern or creative templates, while corporate roles favor classic or professional designs.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-start">
+                                    <h6 class="fw-bold">Match Your Experience Level</h6>
+                                    <p class="text-muted small">Entry-level candidates might prefer modern templates, while executives often choose professional layouts.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-start">
+                                    <h6 class="fw-bold">Company Culture</h6>
+                                    <p class="text-muted small">Research the company's culture and choose a template that aligns with their values and style.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-start">
+                                    <h6 class="fw-bold">Content Length</h6>
+                                    <p class="text-muted small">If you have extensive experience, choose a template with good content organization and spacing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Ready to Create Your Resume?</h2>
+                <p class="lead mb-4">Choose your template and start building your professional resume in minutes.</p>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('builder') }}" class="btn btn-warning btn-lg">
+                        <i class="fas fa-plus me-2"></i>Start Building
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('signup') }}" class="btn btn-warning btn-lg me-3">
+                        <i class="fas fa-rocket me-2"></i>Get Started Free
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Template Preview Modal -->
+<div class="modal fade" id="templatePreviewModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Template Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="templatePreviewContent">
+                    <!-- Template preview will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary" id="useTemplateBtn">
+                    <i class="fas fa-edit me-2"></i>Use This Template
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Template card hover effects
+    const templateCards = document.querySelectorAll('.template-card');
+    templateCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.querySelector('.template-overlay').style.opacity = '1';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.querySelector('.template-overlay').style.opacity = '0';
+        });
+    });
+
+    // Template preview functionality
+    const previewButtons = document.querySelectorAll('.preview-template');
+    const previewModal = new bootstrap.Modal(document.getElementById('templatePreviewModal'));
+    const previewContent = document.getElementById('templatePreviewContent');
+    const useTemplateBtn = document.getElementById('useTemplateBtn');
+
+    previewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const template = this.dataset.template;
+            showTemplatePreview(template);
+            previewModal.show();
+        });
+    });
+
+    function showTemplatePreview(template) {
+        // Create sample resume content for preview
+        const sampleData = {
+            personal: {
+                name: 'John Doe',
+                title: 'Software Engineer',
+                email: 'john.doe@email.com',
+                phone: '+1 (555) 123-4567',
+                address: 'San Francisco, CA'
+            },
+            summary: 'Experienced software engineer with 5+ years of expertise in full-stack development, specializing in React, Node.js, and cloud technologies. Proven track record of delivering scalable solutions and leading development teams.',
+            experience: [
+                {
+                    title: 'Senior Software Engineer',
+                    company: 'Tech Corp',
+                    location: 'San Francisco, CA',
+                    startDate: '2020',
+                    endDate: 'Present',
+                    description: 'Led development of microservices architecture, improved system performance by 40%, and mentored junior developers.'
+                }
+            ],
+            education: [
+                {
+                    degree: 'Bachelor of Science in Computer Science',
+                    institution: 'University of California',
+                    field: 'Computer Science',
+                    startDate: '2016',
+                    endDate: '2020',
+                    details: 'GPA: 3.8/4.0, Dean\'s List'
+                }
+            ],
+            skills: {
+                technical: 'JavaScript, React, Node.js, Python, AWS, Docker',
+                soft: 'Leadership, Communication, Problem Solving, Teamwork'
+            }
+        };
+
+        // Generate preview HTML based on template
+        const previewHTML = generateTemplatePreview(template, sampleData);
+        previewContent.innerHTML = previewHTML;
+        
+        // Update use template button
+        useTemplateBtn.href = `/builder?template=${template}`;
+    }
+
+    function generateTemplatePreview(template, data) {
+        const templateClass = `template-${template}`;
+        
+        return `
+            <div class="${templateClass}">
+                <div class="header">
+                    <div class="name">${data.personal.name}</div>
+                    <div class="title">${data.personal.title}</div>
+                    <div class="contact-info">
+                        <div>${data.personal.email} | ${data.personal.phone}</div>
+                        <div>${data.personal.address}</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Professional Summary</div>
+                    <p>${data.summary}</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Work Experience</div>
+                    ${data.experience.map(exp => `
+                        <div class="experience-item mb-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">${exp.title}</h6>
+                                    <div class="text-muted">${exp.company} | ${exp.location}</div>
+                                    <div class="text-muted small">${exp.startDate} - ${exp.endDate}</div>
+                                </div>
+                            </div>
+                            <p class="mb-0 mt-2">${exp.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Education</div>
+                    ${data.education.map(edu => `
+                        <div class="education-item mb-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">${edu.degree}</h6>
+                                    <div class="text-muted">${edu.institution} | ${edu.field}</div>
+                                    <div class="text-muted small">${edu.startDate} - ${edu.endDate}</div>
+                                </div>
+                            </div>
+                            ${edu.details ? `<p class="mb-0 mt-2">${edu.details}</p>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Skills</div>
+                    <div><strong>Technical Skills:</strong> ${data.skills.technical}</div>
+                    <div><strong>Soft Skills:</strong> ${data.skills.soft}</div>
+                </div>
+            </div>
+        `;
+    }
+});
+</script>
+{% endblock %} 

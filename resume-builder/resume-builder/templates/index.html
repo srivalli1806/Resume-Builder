@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Professional Resume Builder{% endblock %}
+
+{% block main_class %}home-page{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    Create Your Resume <span class="text-warning">Effortlessly</span>
+                </h1>
+                <p class="lead mb-4">
+                    Professional, interactive, and downloadable resumes in minutes. 
+                    Stand out from the crowd with our modern templates and easy-to-use builder.
+                </p>
+                <div class="hero-buttons">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('builder') }}" class="btn btn-warning btn-lg me-3">
+                            <i class="fas fa-plus me-2"></i>Create Resume
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('signup') }}" class="btn btn-warning btn-lg me-3">
+                            <i class="fas fa-rocket me-2"></i>Get Started Free
+                        </a>
+                        <a href="{{ url_for('templates') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-eye me-2"></i>View Templates
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="hero-stats mt-5">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="stat-item">
+                                <h3 class="fw-bold text-warning">10K+</h3>
+                                <p class="mb-0">Resumes Created</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-item">
+                                <h3 class="fw-bold text-warning">4</h3>
+                                <p class="mb-0">Professional Templates</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-item">
+                                <h3 class="fw-bold text-warning">100%</h3>
+                                <p class="mb-0">Free to Use</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <img src="https://via.placeholder.com/600x400/007bff/ffffff?text=Resume+Preview" 
+                         alt="Resume Preview" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Why Choose Our Resume Builder?</h2>
+                <p class="lead text-muted">Everything you need to create a professional resume that gets you noticed.</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-mobile-alt fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Responsive Design</h4>
+                    <p class="text-muted">Works perfectly on desktop, tablet, and mobile devices. Your resume looks great everywhere.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-eye fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Real-time Preview</h4>
+                    <p class="text-muted">See your changes instantly as you type. No more guessing how your resume will look.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-palette fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Multiple Templates</h4>
+                    <p class="text-muted">Choose from modern, classic, creative, and professional designs to match your style.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-download fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">PDF Export</h4>
+                    <p class="text-muted">Download your resume as a professional PDF ready for job applications and interviews.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">How It Works</h2>
+                <p class="lead text-muted">Create your professional resume in just 3 simple steps.</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="step-card text-center p-4">
+                    <div class="step-number mb-3">
+                        <span class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                              style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">1</span>
+                    </div>
+                    <h4 class="fw-bold mb-3">Choose a Template</h4>
+                    <p class="text-muted">Select from our collection of professional templates designed for different industries and experience levels.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card text-center p-4">
+                    <div class="step-number mb-3">
+                        <span class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                              style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">2</span>
+                    </div>
+                    <h4 class="fw-bold mb-3">Fill in Your Details</h4>
+                    <p class="text-muted">Enter your information using our intuitive form. See your resume update in real-time as you type.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card text-center p-4">
+                    <div class="step-number mb-3">
+                        <span class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                              style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">3</span>
+                    </div>
+                    <h4 class="fw-bold mb-3">Download & Apply</h4>
+                    <p class="text-muted">Download your resume as a professional PDF and start applying to your dream jobs immediately.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Templates Preview Section -->
+<section class="templates-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Professional Templates</h2>
+                <p class="lead text-muted">Choose the perfect template for your industry and experience level.</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="template-card">
+                    <div class="template-preview mb-3">
+                        <img src="{{ url_for('static', filename='images/templates/modern-template.svg') }}" 
+                             alt="Modern Template" class="img-fluid rounded shadow">
+                    </div>
+                    <h5 class="fw-bold mb-2">Modern</h5>
+                    <p class="text-muted small">Clean, minimalist design with bold typography</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="template-card">
+                    <div class="template-preview mb-3">
+                        <img src="{{ url_for('static', filename='images/templates/classic-template.svg') }}" 
+                             alt="Classic Template" class="img-fluid rounded shadow">
+                    </div>
+                    <h5 class="fw-bold mb-2">Classic</h5>
+                    <p class="text-muted small">Traditional layout with professional styling</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="template-card">
+                    <div class="template-preview mb-3">
+                        <img src="{{ url_for('static', filename='images/templates/creative-template.svg') }}" 
+                             alt="Creative Template" class="img-fluid rounded shadow">
+                    </div>
+                    <h5 class="fw-bold mb-2">Creative</h5>
+                    <p class="text-muted small">Colorful and innovative design</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="template-card">
+                    <div class="template-preview mb-3">
+                        <img src="{{ url_for('static', filename='images/templates/professional-template.svg') }}" 
+                             alt="Professional Template" class="img-fluid rounded shadow">
+                    </div>
+                    <h5 class="fw-bold mb-2">Professional</h5>
+                    <p class="text-muted small">Corporate-style layout</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{{ url_for('templates') }}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-eye me-2"></i>View All Templates
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Ready to Create Your Professional Resume?</h2>
+                <p class="lead mb-4">Join thousands of job seekers who have already created their perfect resume with our builder.</p>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('builder') }}" class="btn btn-warning btn-lg">
+                        <i class="fas fa-plus me-2"></i>Create Resume Now
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('signup') }}" class="btn btn-warning btn-lg me-3">
+                        <i class="fas fa-rocket me-2"></i>Get Started Free
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
